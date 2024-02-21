@@ -60,7 +60,6 @@ namespace MatchManagementApiDemo
             app.UseSwaggerUI(c =>
             {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "Match Management Api Demo V1");
-                // Customize Swagger UI settings if needed
             });
 
             app.UseHttpsRedirection();

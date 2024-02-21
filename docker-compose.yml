@@ -1,0 +1,29 @@
+version: '3.4'
+
+networks:
+    MatchManagementApiDemoNetwork:
+
+services:
+   
+   SqlServerDb:
+        container_name: SqlServerContainer
+        image: mcr.microsoft.com/mssql/server:2022-latest
+        ports:
+           - 8002:1433
+        environment:
+           - ACCEPT_EULA=Y
+           - SA_PASSWORD=myStong_Password123#
+        networks:
+          - MatchManagementApiDemoNetwork
+
+   matchmanagementapidemo:
+    image: ${DOCKER_REGISTRY-}matchmanagementapidemo
+    ports:
+       - 8003:44320
+    build:
+      context: .
+      dockerfile: MatchManagementApiDemo/Dockerfile
+    depends_on:
+      - SqlServerDb
+    networks:
+      - MatchManagementApiDemoNetwork
