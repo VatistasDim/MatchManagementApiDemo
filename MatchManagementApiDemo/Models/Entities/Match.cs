@@ -28,12 +28,13 @@ namespace MatchManagementApiDemo.Models
         /// <summary>
         /// Gets or sets the date of the match.
         /// </summary>
+        //[JsonConverter(typeof(DateFormatConverter))]
         public DateTime MatchDate { get; set; }
 
         /// <summary>
         /// Gets or sets the time of the match.
         /// </summary>
-        [JsonConverter(typeof(TimeSpanConverter))]
+        //[JsonConverter(typeof(TimeSpanConverter))]
         public TimeSpan MatchTime { get; set; }
 
         /// <summary>

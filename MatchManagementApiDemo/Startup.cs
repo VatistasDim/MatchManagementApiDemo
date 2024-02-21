@@ -34,6 +34,7 @@ namespace MatchManagementApiDemo
                                     .AddJsonOptions(options =>
                                     {
                                         options.JsonSerializerOptions.Converters.Add(new TimeSpanConverter());
+                                        options.JsonSerializerOptions.Converters.Add(new TimeSpanConverter());
                                         options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.Preserve;
                                     });
             services.AddDbContext<ApplicationDbContext>(options =>
