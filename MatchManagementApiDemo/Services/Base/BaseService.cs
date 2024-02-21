@@ -1,7 +1,6 @@
 ﻿using AutoMapper;
 using MatchManagementApiDemo.Data;
 using MatchManagementApiDemo.Interfaces.BaseService;
-using MatchManagementApiDemo.Interfaces.Mapper;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;

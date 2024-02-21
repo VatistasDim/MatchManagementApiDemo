@@ -1,5 +1,5 @@
-﻿using MatchManagementApiDemo.Data;
-using MatchManagementApiDemo.Interfaces.Mapper;
+﻿using AutoMapper;
+using MatchManagementApiDemo.Data;
 using MatchManagementApiDemo.Interfaces.Services;
 using MatchManagementApiDemo.Models;
 using MatchManagementApiDemo.Models.DTO;
@@ -14,8 +14,8 @@ namespace MatchManagementApiDemo.Services
     /// </summary>
     public class MatchService : BaseService<Match, MatchDto>, IMatchService
     {
-        public MatchService(ApplicationDbContext applicationDbContext, IEntityMapper<Match, MatchDto> entityMapper)
-            : base(applicationDbContext, entityMapper)
+        public MatchService(ApplicationDbContext applicationDbContext, IMapper mapper)
+            : base(applicationDbContext, mapper)
         {
 
         }

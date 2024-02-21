@@ -1,9 +1,6 @@
 using MatchManagementApiDemo.Converters;
 using MatchManagementApiDemo.Data;
-using MatchManagementApiDemo.Helpers;
 using MatchManagementApiDemo.Interfaces.BaseService;
-using MatchManagementApiDemo.Interfaces.Helpers;
-using MatchManagementApiDemo.Interfaces.Mapper;
 using MatchManagementApiDemo.Interfaces.Services;
 using MatchManagementApiDemo.Mappings;
 using MatchManagementApiDemo.Services;
@@ -40,9 +37,6 @@ namespace MatchManagementApiDemo
                                     });
             services.AddDbContext<ApplicationDbContext>(options =>
                                                         options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
-            
-            services.AddScoped<IEntityHelper, EntityHelper>();
-            services.AddScoped(typeof(IEntityMapper<,>), typeof(EntityMapper<,>));
             services.AddScoped(typeof(IBaseService<,>), typeof(BaseService<,>));
             services.AddScoped<IMatchService, MatchService>();
             services.AddScoped<IMatchOddsService, MatchOddsService>();

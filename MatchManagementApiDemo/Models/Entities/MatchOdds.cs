@@ -19,13 +19,11 @@ namespace MatchManagementApiDemo.Models
         /// <summary>
         /// Gets or sets the unique identifier of the match associated with the odds.
         /// </summary>
-        [JsonIgnore]
         public int MatchId { get; set; }
 
         /// <summary>
         /// Gets or sets the navigation property for the associated match.
         /// </summary>
-        [JsonIgnore]
         public Match Match { get; set; }
 
         /// <summary>

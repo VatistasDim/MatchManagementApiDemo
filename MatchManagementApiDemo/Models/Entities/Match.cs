@@ -39,7 +39,6 @@ namespace MatchManagementApiDemo.Models
         /// <summary>
         /// Gets or sets the collection of odds associated with this match.
         /// </summary>
-        [JsonIgnore]
         public List<MatchOdds> MatchOdds { get; set; }
 
         /// <summary>
