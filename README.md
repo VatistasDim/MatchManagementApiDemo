@@ -37,6 +37,9 @@ The application includes Swagger UI for interactive API documentation. Developer
 - The application follows a modular and organized structure with a generic base service for common CRUD operations.
 - DTOs are used to transfer data between the API and the client, helping to shape the data exchanged
 
+## Known Issues:
+Sometimes when running on Docker mode, the container that runs the SQLServer is unable to log in to the server. However, the second time that the application will start, this issue is no longer reproducible.
+
 ## Docker Support:
 The application includes a Dockerfile for containerization. Developers can build and run the application within a Docker container, providing better consistency and portability.
 This Match Management API serves as a backend system for managing sports-related data, offering a RESTful API for creating, retrieving, updating, and deleting information about matches and their odds.
