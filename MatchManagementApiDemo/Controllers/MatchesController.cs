@@ -19,14 +19,14 @@ namespace MatchManagementApiDemo.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Match>>> GetMatches()
+        public async Task<ActionResult<IEnumerable<MatchDto>>> GetMatches()
         {
             var matches = await _matchService.GetMatchesAsync();
             return Ok(matches);
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<Match>> GetMatch(int id)
+        public async Task<ActionResult<MatchDto>> GetMatch(int id)
         {
             var match = await _matchService.GetMatchAsync(id);
 
@@ -37,7 +37,7 @@ namespace MatchManagementApiDemo.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<Match>> PostMatch([FromBody] MatchDto matchDto)
+        public async Task<ActionResult<MatchDto>> PostMatch([FromBody] MatchDto matchDto)
         {
             if (matchDto == null)
                 return BadRequest("Invalid match data");
@@ -68,10 +68,5 @@ namespace MatchManagementApiDemo.Controllers
 
             return NoContent();
         }
-
-        //private bool MatchExists(int id)
-        //{
-        //    return _entityHelper.EntityExists<Match>(id);
-        //}
     }
 }

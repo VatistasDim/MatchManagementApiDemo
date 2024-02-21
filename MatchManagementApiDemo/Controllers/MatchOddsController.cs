@@ -56,9 +56,15 @@ namespace MatchManagementApiDemo.Controllers
             return NoContent();
         }
 
-        //private bool MatchOddsExists(int id)
-        //{
-        //    return _entityHelper.EntityExists<MatchOdds>(id);
-        //}
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteMatchOdds(int id)
+        {
+            var success = await _matchOddsService.DeleteMatchOddsAsync(id);
+
+            if (!success)
+                return NotFound();
+
+            return NoContent();
+        }
     }
 }

@@ -47,8 +47,30 @@ namespace MatchManagementApiDemo.Services
 
         public async Task<bool> UpdateMatchOddsAsync(int id, MatchOddsDto matchOddsDto)
         {
-            return await UpdateEntityAsync(id, matchOddsDto);
+            var existingMatchOdds = await _applicationDbContext.Set<MatchOdds>().FindAsync(id);
+
+            if (existingMatchOdds == null)
+                return false;
+            var mapOptions = new MapperConfiguration(cfg =>
+            {
+                cfg.CreateMap<MatchOddsDto, MatchOdds>().ForMember(dest => dest.ID, opt => opt.Ignore());
+                cfg.CreateMap<MatchDto, Match>().ForMember(dest => dest.ID, opt => opt.Ignore());
+            }).CreateMapper();
+            mapOptions.Map(matchOddsDto, existingMatchOdds);
+            if (matchOddsDto.Match != null)
+            {
+                var existingMatch = await _applicationDbContext.Matches.FindAsync(matchOddsDto.Match.ID);
+
+                if (existingMatch != null)
+                {
+                    mapOptions.Map(matchOddsDto.Match, existingMatch);
+                }
+            }
+
+            await _applicationDbContext.SaveChangesAsync();
+            return true;
         }
+
 
         public async Task<bool> DeleteMatchOddsAsync(int id)
         {
