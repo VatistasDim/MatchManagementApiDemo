@@ -30,7 +30,7 @@ namespace MatchManagementApiDemo.Services
         /// <returns>A collection of match DTOs.</returns>
         public async Task<IEnumerable<MatchDto>> GetMatchesAsync()
         {
-            return await GetMatchesAsync();
+            return await GetEntitiesAsync();
         }
 
         /// <inheritdoc/>
