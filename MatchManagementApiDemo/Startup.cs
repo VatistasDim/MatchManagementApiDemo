@@ -13,6 +13,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System.Text.Json.Serialization;
 using AutoMapper;
+using Microsoft.OpenApi.Models;
 
 namespace MatchManagementApiDemo
 {
@@ -37,6 +38,10 @@ namespace MatchManagementApiDemo
                                     });
             services.AddDbContext<ApplicationDbContext>(options =>
                                                         options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Match Management Api Demo", Version = "v1" });
+            });
             services.AddScoped(typeof(IBaseService<,>), typeof(BaseService<,>));
             services.AddScoped<IMatchService, MatchService>();
             services.AddScoped<IMatchOddsService, MatchOddsService>();
@@ -50,6 +55,13 @@ namespace MatchManagementApiDemo
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            app.UseSwagger();
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Match Management Api Demo V1");
+                // Customize Swagger UI settings if needed
+            });
 
             app.UseHttpsRedirection();
 
